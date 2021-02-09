@@ -1,4 +1,3 @@
-const notify = $.isNode() ? require('./sendNotify') : '';
 const yargs = require("yargs/yargs");
 // const { hideBin } = require('yargs/helpers')
 /**
