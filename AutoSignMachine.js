@@ -1,4 +1,5 @@
 const yargs = require("yargs/yargs");
+const notify = $.isNode() ? require("./sendNotify") : ``;
 // const { hideBin } = require('yargs/helpers')
 /**
  * 命令执行入口
