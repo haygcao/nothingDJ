@@ -18,7 +18,7 @@
  *  首页-签到有礼-免费抽-拿苹果iPad Pro(摇一摇)
  *  首页-签到有礼-免费抽-拆华为Pad(去抽奖)
  *  首页-签到有礼-免费抽-拿iPhone12(摇一摇)
- *  首页-签到有礼-免费抽-赢Apple Watch(去抽奖)
+ *  首页-签到有礼-免费抽-赢Apple Watch(去抽奖) [活动取消]
  *  首页-签到有礼-赢vivo X60(翻牛牌)
  *  首页-签到有礼-赚更多福利-看视频奖励5积分
  *  首页-签到有礼-赚更多福利-天天抽好礼
@@ -37,8 +37,6 @@
  *
  */
 const { scheduler } = require("../../../utils/scheduler");
-const { getCookies, saveCookies } = require("../../../utils/util");
-const _request = require("../../../utils/request");
 
 var start = async (params) => {
   const { cookies, options } = params;
@@ -241,14 +239,14 @@ var start = async (params) => {
     taskOption
   );
 
-  // 首页-签到有礼-免费抽-赢Apple Watch(去抽奖)
-  await scheduler.regTask(
-    "dailyTurntablePage",
-    async (request) => {
-      await require("./dailyTurntablePage").doTask(request, options);
-    },
-    taskOption
-  );
+  // // 首页-签到有礼-免费抽-赢Apple Watch(去抽奖)
+  // await scheduler.regTask(
+  //   "dailyTurntablePage",
+  //   async (request) => {
+  //     await require("./dailyTurntablePage").doTask(request, options);
+  //   },
+  //   taskOption
+  // );
 
   // 首页-签到有礼-赢vivo X60(翻牛牌)
   await scheduler.regTask(
@@ -380,6 +378,15 @@ var start = async (params) => {
       startTime: 1,
       ...taskOption,
     }
+  );
+
+  //首页-签到有礼-聚宝盆 [广告图]
+  await scheduler.regTask(
+    "ingots",
+    async (request) => {
+      await require("./ingotsPage").doTask(request, options);
+    },
+    taskOption
   );
 };
 module.exports = {
