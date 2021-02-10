@@ -1,4 +1,5 @@
 const path = require("path");
+const notify = $.isNode() ?require('./sendNotify') : '';
 const { scheduler } = require("../utils/scheduler");
 
 exports.command = "unicom";
