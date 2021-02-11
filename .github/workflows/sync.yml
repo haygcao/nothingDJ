@@ -25,6 +25,6 @@ jobs:
         with:
           source_repo: "https://github.com/DJ-clamp/BaseSation.git"
           source_branch: "dev"
-          destination_branch: "main"
+          destination_branch: "new"
           github_token: ${{ github.event.client_payload.PAT || secrets.PAT }}
      
