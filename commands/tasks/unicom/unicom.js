@@ -11,8 +11,10 @@
  *  首页-小说-阅读越有礼打卡赢话费
  *  首页-小说-读满10章赢好礼
  *  首页-小说-阅读福利抽大奖
+ *  首页-小说-任意一本小说内页章节中间 [看书里面的5个视频]
  *  首页-签到有礼-免费领-浏览领积分
- *  首页-签到有礼-免费拿-看视频夺宝 TODO:易出现本次操作需要进行验证，暂时注释
+ *  首页-签到有礼-免费领-猜拳拿话费
+ *  首页-签到有礼-免费拿-看视频夺宝
  *  首页-签到有礼-免费抽-抓OPPO手机
  *  首页-签到有礼-免费抽-拿666积分-豪礼大派送抽奖
  *  首页-签到有礼-免费抽-拿苹果iPad Pro(摇一摇)
@@ -24,6 +26,8 @@
  *  首页-签到有礼-赚更多福利-看视频奖励5积分
  *  首页-签到有礼-赚更多福利-天天抽好礼
  *  首页-签到有礼-居家娱乐馆
+ *  首页-签到有礼-免费抽霸王餐
+ *  首页-签到有礼-聚宝盆 [广告图]
  *  首页-游戏-娱乐中心-每日打卡
  *  首页-游戏-娱乐中心-天天领取3G流量包
  *  首页-游戏-娱乐中心-每日打卡-完成今日任务(200m)
@@ -170,13 +174,17 @@ var start = async (params) => {
 
   // 首页-签到有礼-免费拿-看视频夺宝
   // 易出现本次操作需要进行验证，暂时注释
-  // await scheduler.regTask('dailyVideoFreeGoods', async (request) => {
-  //   await require('./dailyVideoFreeGoods').doTask(request, options)
-  // }, {
-  //   isCircle: true,
-  //   startTime: 10 * 3600,
-  //   intervalTime: 4 * 3600
-  // })
+  await scheduler.regTask(
+    "dailyVideoFreeGoods",
+    async (request) => {
+      await require("./dailyVideoFreeGoods").doTask(request, options);
+    },
+    {
+      isCircle: true,
+      startTime: 10 * 3600,
+      intervalTime: 4 * 3600,
+    }
+  );
 
   // 首页-签到有礼-免费抽-抓OPPO手机
   await scheduler.regTask(
@@ -408,6 +416,33 @@ var start = async (params) => {
     },
     taskOption
   );
+  //首页-签到有礼-免费抽霸王餐
+  await scheduler.regTask(
+    "dailyBaWangcard",
+    async (request) => {
+      await require("./dailyBaWangcard.js").doTask(request, options);
+    },
+    taskOption
+  );
+
+//首页-小说-任意一本小说内页章节中间 [看书里面的5个视频]
+  await scheduler.regTask(
+    "book5video",
+    async (request) => {
+      await require("./book5video.js").doTask(request, options);
+    },
+    taskOption
+  );
+
+  // 首页-签到有礼-免费领-猜拳拿话费
+  await scheduler.regTask(
+    "dailyFingerqd",
+    async (request) => {
+      await require("./dailyFingerqd.js").doTask(request, options);
+    },
+    taskOption
+  );
+
 };
 module.exports = {
   start,
