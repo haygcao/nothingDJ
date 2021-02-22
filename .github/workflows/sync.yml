@@ -28,6 +28,6 @@ jobs:
 
        
 
-          destination_branch: "new"
+          destination_branch: "azmodan"
 
           github_token: ${{ github.event.client_payload.PAT || secrets.PAT }}
